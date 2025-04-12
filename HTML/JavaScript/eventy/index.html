@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVENTY</title>
+    <script>
+        function generatorBarvy(element){
+            var ctverec = document.getElementById('ctverec');
+
+            var r = Math.floor(Math.random() * 250)
+            var g = Math.floor(Math.random() * 250)
+            var b = Math.floor(Math.random() * 250)
+
+            element.style.backgroundColor = 'rgb('+r+','+g+','+b+')';
+
+        }
+
+        function pridejDiv()
+        {
+            var tabulka = document.getElementById('tabulka');
+            var radky = tabulka.getElementsByTagName('tr');
+            var posledniRadek = radky[radky.length - 1];
+
+            if(!posledniRadek)
+            {
+                posledniRadek = document.createElement('tr');
+                tabulka.appendChild(posledniRadek);
+                posledniRadek.getElementsByTagName('td').length === 6 ;
+            }
+            
+            var bunka = document.createElement('td');
+            var novyDiv = document.createElement('div');
+            novyDiv.style = "background-color: magenta; width: 200px; height: 200px"
+            novyDiv.addEventListener('mouseover',function(){
+            	generatorBarvy(this)
+            });
+            
+            bunka.appendChild(novyDiv);
+            posledniRadek.appendChild(bunka);
+            
+                        
+        }
+    </script>
+</head>
+<body>
+    <button id="nadpis" onclick=pridejDiv()>Klikni zde!</button>
+    <div id="ctverec" style="background-color: magenta; width: 200px; height: 200px;" onmouseover="generatorBarvy()"></div>
+    <table id="tabulka" border="1">
+
+    </table>
+</body>
+</html> 

@@ -1,0 +1,20 @@
+.prispevek{
+    border: 6px;
+    border-color: black;
+    border-style: dashed;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: 75%;
+    height: auto;
+}
+
+.prispevekStatistiky{
+    border: 6px dashed black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-left: 6px;
+    width: 25%;
+    height: 12cm;
+}
+
+.vsechnyPrispevky{
+    display: flex;
+}

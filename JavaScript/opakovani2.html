@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <title>jquery</title>
+    <script>
+        $(document).ready(function () {
+            $(".generuj").click(function () {
+                var pocet = prompt("Zadej pocet ctvercu"); //50
+                $(".generuj").css({ display: "none" });
+
+
+                for (var i = 0; i < pocet; i++) {
+                    var square = $("<div>").addClass("square");
+                    if ((i) % 10 === 0) {
+                        $("#kontejner").append("<div style='clear:both;'></div>");
+                        $("#kontejner").append(square)
+                    }
+                    else {
+                        $("#kontejner").append(square)
+                    }
+                }
+            });
+
+            $("#kontejner").on("mouseenter", ".square", function () {
+                $(this).css({ background: getRandomColor() });
+            });
+
+
+
+
+        });
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+    </script>
+</head>
+<body>
+    <style>
+        .generuj {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: #ff0000;
+        }
+
+        .square {
+            float: left;
+            margin: 5px;
+            width: 50px;
+            height: 50px;
+            background: #00eeff;
+        }
+    </style>
+
+    <div id="kontejner"></div>
+    <div class="generuj"></div>
+</body>
+</html>

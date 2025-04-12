@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <title>Hra: Hádej číslo!</title>
+    <script>
+        var guess = Math.floor(Math.random() * 100) + 1;
+
+        function hadej()
+        {
+            var odhad = parseInt(prompt("Hádej číslo od 1 do 100: "));
+            if(guess == odhad)
+            {
+                alert("Uhádl jsi správně!")
+            }
+            if(guess > odhad)
+            {
+                alert("Moc malé číslo!")
+            }
+            if(guess < odhad)
+            {
+                alert("Moc velké číslo!")
+            }
+        }
+
+        function spammerConsole()
+        {
+            var i;
+            /*for(i=0;i<100;i++)
+            {
+                console.log("Ahojte \n")
+                console.log("cus \n")
+            }*/
+
+            while(i<100)
+            {
+                console.log("Ahojte \n");
+                console.log("cus \n");
+                i++;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <button onclick="hadej()">Hrej!</button>
+    <button onclick="hadej()">Hrej!</button>
+    <button onclick="hadej()">Hrej!</button>
+    <button onclick="spammerConsole()">Spammer</button>
+</body>
+</html>

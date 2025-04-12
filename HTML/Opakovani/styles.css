@@ -1,0 +1,19 @@
+.mojeTabulka{
+    border-style: solid;
+}
+body{
+    background-color: green;
+}
+h1{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-decoration: wavy;
+}
+p{
+    background-color: black;
+    color: white;
+    font-family: monospace;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 20px 50px;
+}
+

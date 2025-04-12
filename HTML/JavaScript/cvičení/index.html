@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knihovna webových stránek</title>
+</head>
+<body>
+    <div class="nadpis">
+        <h1>Knihovna webových stránek</h1>
+    </div>
+    <div class="kategorie">
+        <h2>Kategorie</h2>
+        <a onclick="location.assign('https:/google.com')">Vyhledávač, </a>
+        <a onclick="location.assign('https:/youtube.com')">Videa a filmy, </a>
+        <a onclick="location.assign('https:/w3schools.com')">Příručky k programování ,</a>
+        <a onclick="location.assign('https:/archive.org')">Archiv souborů, </a>
+    </div>
+    <script>
+        var start = confirm("Chceš pokračovat?");
+        if(start == false)
+        {
+            location.assign('https:/google.com')
+        } else{
+            alert("Klikni OK!")
+        }
+    </script>
+</body>
+</html>

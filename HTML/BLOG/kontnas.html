@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styly.css" type="text/css">
+    <link rel="stylesheet" href="kontakt.css" type="text/css"> 
+    <title>Kontaktujte nás!</title>
+</head>
+<script>
+    function handleFormSubmit() {
+        // Získání hodnoty z prvního inputu
+        var inputValue1 = document.getElementById('jmeno').value;
+
+        // Získání hodnoty z druhého inputu
+        var inputValue2 = document.getElementById('prijmeni').value;
+
+        // Zobrazení hodnot ve formě alertu
+        alert('Hodnota 1: ' + inputValue1 + '\nHodnota 2: ' + inputValue2);
+
+        // Zamezení přesměrování na jinou stránku
+        return false;
+    }
+</script> 
+<body>
+    <div class="hlavicka">
+        <center>
+            <h1 class="nadpis">Můj nový blok do IT Step</h1>
+        </center>
+        <ul id="navBar">
+            <li><a href="index.html">Příspěvky</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="kontnas.html">Kontaktujte nás</a></li>
+            <li><a href="">Připravuje se</a></li>
+        </ul>
+    </div>
+
+    <form onsubmit="return handleFormSubmit()">
+        <label for="jmeno">Zadej své jméno</label>
+        <input type="text" name="jmeno" id="jmeno">
+        <label for="prijmeni">Zadej své příjmení</label>
+        <input type="text" name="prijmeni" id="prijmeni">
+        <input type="submit">
+    </form>
+</body>
+</html>
