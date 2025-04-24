@@ -2,13 +2,11 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Kvíz o webových aplikacích</title>
+    <title>danix._.homepage | Kvíz o webových aplikacích</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* ... ostatní styly zůstávají ... */
-
-        /* === MODÁLNÍ OKNO === */
         .modal {
             display: none;
             position: fixed;
@@ -45,25 +43,76 @@
         .close:hover {
             color: #fff;
         }
+
+        .centered-box {
+            text-align: center;
+            margin: 2em auto;
+            max-width: 800px;
+            background: rgba(255,255,255,0.05);
+            padding: 1em;
+            border-radius: 12px;
+        }
+
+        .question-block {
+            margin: 1em 0;
+        }
+
+        label {
+            display: block;
+            margin: 0.5em 0;
+        }
+
+        .submit-btn {
+            padding: 0.5em 1.5em;
+            font-size: 1em;
+            margin-top: 1em;
+            cursor: pointer;
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        nav a {
+            margin: 0 1em;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="/"><i class="fa fa-house"></i> Domů</a> |
-        <a href="/about"><i class="fa fa-user-secret"></i> O nás</a> |
-        <a href="/contact"><i class="fa fa-envelope"></i> Kontakt</a> |
-        <a href="/quiz"><i class="fa fa-question-circle"></i> Kvíz</a>
-    </nav>
 
-    <section class="quiz-intro centered-box">
-        <h1><i class="fa fa-terminal"></i> Kvíz o webových aplikacích</h1>
-        <p>🧠 Otestuj své znalosti v oblasti <strong>HTML, CSS, JavaScriptu i backendu</strong>.</p>
-        <p>✅ Každá otázka má jen jednu správnou odpověď – zvládneš to? 💪</p>
-    </section>
-    
+<!-- Hlavička -->
+<div class="hlavicka">
+    <center>
+        <h1 class="nadpis">danix._.quiz</h1>
+    </center>
+    <ul id="navBar">
+        <li><a href="/">Domov</a></li>
+        <li><a href="/repo">Soubory</a></li>
+        <li><a href="/tasks">Úkoly</a></li>
+        <li><a href="/video">Video</a></li>
+        <li><a href="/quiz">Kvíz</a></li>
+        <li><a href="/contact"> Kontakt</a></li>
+    </ul>
+</div>
 
-    <form method="POST" id="quiz-form">
-        {% for q in questions %}
+<!-- Úvod ke kvízu -->
+<div class="prispevky">
+    <center>
+        <div class="prispevek">
+            <h2 class="text"><i class="fa fa-terminal"></i> Kvíz o webových aplikacích</h2>
+            <p class="text">🧠 Otestuj své znalosti v oblasti <strong>HTML, CSS, JavaScriptu i backendu</strong>.</p>
+            <p class="text">✅ Každá otázka má jen jednu správnou odpověď – zvládneš to? 💪</p>
+        </div>
+    </center>
+</div>
+
+<!-- Kvíz -->
+<div class="prispevky">
+    <center>
+        <form method="POST" id="quiz-form" class="prispevek">
+            {% for q in questions %}
             {% set q_index = loop.index0 %}
             <div class="question-block" data-question-index="{{ q_index }}">
                 <p><strong>{{ loop.index }}.</strong> {{ q.question }}</p>
@@ -74,21 +123,23 @@
                 </label>
                 {% endfor %}
             </div>
-        {% endfor %}
-        <input class="submit-btn" type="submit" value="🎯 Odeslat kvíz">
-    </form>
+            {% endfor %}
+            <input class="submit-btn" type="submit" value="🎯 Odeslat kvíz">
+        </form>
+    </center>
+</div>
 
-    <!-- Výsledek jako modal -->
-    {% if result %}
-    <div id="resultModal" class="modal" style="display: block;">
-        <div class="modal-content">
-            <span class="close" onclick="document.getElementById('resultModal').style.display='none'">&times;</span>
-            <h2>{{ result }}</h2>
-            <p><i class="fa fa-trophy"></i> Skvělá práce! Pokračuj dál 🚀</p>
-        </div>
+<!-- Výsledek -->
+{% if result %}
+<div id="resultModal" class="modal" style="display: block;">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('resultModal').style.display='none'">&times;</span>
+        <h2>{{ result }}</h2>
+        <p><i class="fa fa-trophy"></i> Skvělá práce! Pokračuj dál 🚀</p>
     </div>
-    {% endif %}
+</div>
+{% endif %}
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

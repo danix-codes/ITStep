@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css" type="text/css">
+    <title>danix._.homepage</title>
+    <style>
+        .task { border: 1px solid #ccc; padding: 10px; margin: 5px; }
+        .completed { text-decoration: line-through; color: gray; }
+    </style>
+</head>
+<body>
+    <!-- Hlavička -->
+    <div class="hlavicka">
+        <center>
+            <h1 class="nadpis">danix._.tasks</h1>
+        </center>
+        <ul id="navBar">
+            <li><a href="/">Domov</a></li>
+            <li><a href="/repo">Soubory</a></li>
+            <li><a href="/tasks">Úkoly</a></li>
+            <li><a href="/video">Video</a></li>
+            <li><a href="/quiz">Kvíz</a></li>
+            <li><a href="/contact"> Kontakt</a></li>
+        </ul>
+    </div>
+    <!-- Systém úkolů -->
+    <div class="prispevky">
+        <center>
+            <div class="prispevek">
+                <h2 class="text">Systém úkolů</h2>
+                <div>
+                    <input type="text" id="taskInput" placeholder="Zadej název úkolu">
+                    <button onclick="addTask()">Přidat úkol</button>
+                </div>
+                <div id="tasks"></div>
+            </div>
+        </center>
+    </div>
+    
+    <script>
+        const initialTasks = [
+            { id: 1, text: "Dokonči jeden projekt", completed: false },
+            { id: 2, text: "Nastav nový server", completed: false },
+            { id: 3, text: "Nauč se nový jazyk", completed: false },
+        ];
+
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || initialTasks;
+
+        const tasksContainer = document.getElementById("tasks");
+
+        function renderTasks() {
+            tasksContainer.innerHTML = "";
+            tasks.forEach(task => {
+                const taskElement = document.createElement("div");
+                taskElement.classList.add("task");
+                if (task.completed) taskElement.classList.add("completed");
+                
+                taskElement.innerHTML = `
+                    <p>${task.text}</p>
+                    ${task.completed ? "<p>Splněno ✅</p>" : `<button onclick="completeTask(${task.id})">Splnit úkol</button>`}
+                    <button onclick="deleteTask(${task.id})">Odstranit úkol</button>
+                `;
+                
+                tasksContainer.appendChild(taskElement);
+            });
+        }
+
+        function addTask() {
+            const taskText = document.getElementById("taskInput").value;
+            if (taskText.trim()) {
+                const newTask = { id: Date.now(), text: taskText, completed: false };
+                tasks.push(newTask);
+                document.getElementById("taskInput").value = ""; // Clear input
+                localStorage.setItem("tasks", JSON.stringify(tasks));
+                renderTasks();
+            }
+        }
+
+        function completeTask(id) {
+            tasks = tasks.map(task => task.id === id ? { ...task, completed: true } : task);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            renderTasks();
+        }
+
+        function deleteTask(id) {
+            tasks = tasks.filter(task => task.id !== id);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            renderTasks();
+        }
+
+        renderTasks();
+    </script>
+</body>
+</html>

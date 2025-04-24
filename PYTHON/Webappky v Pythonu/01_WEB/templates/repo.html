@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css" type="text/css">
+    <title>danix._.repo</title>
+</head>
+<script>
+    function searchFiles() {
+        let input = document.getElementById("searchBar").value.toLowerCase();
+        let buttons = document.querySelectorAll(".mainButton");
+        
+        buttons.forEach(button => {
+            let text = button.innerText.toLowerCase();
+            if (text.includes(input)) {
+                button.style.display = "inline-block";
+            } else {
+                button.style.display = "none";
+            }
+        });
+    }
+</script>
+<body>
+    <!--Hlavička-->
+    <div class="hlavicka">
+        <center>
+            <h1 class="nadpis">danix._.repo</h1>
+        </center>
+        <input class="search" type="text" id="searchBar" onkeyup="searchFiles()" placeholder="Vyhledat...">
+        <ul id="navBar">
+            <li><a href="/">Domov</a></li>
+            <li><a href="/repo">Soubory</a></li>
+            <li><a href="/tasks">Úkoly</a></li>
+            <li><a href="/video">Video</a></li>
+            <li><a href="/quiz">Kvíz</a></li>
+            <li><a href="/contact"> Kontakt</a></li>
+        </ul>
+    </div>
+        <div class="prispevky">
+            <center>
+            <div class="prispevek">
+                <h2 class="text">Repositář souborů: programy</h2>
+                <a href="http://dxrepo.duckdns.org/files/install/hwi.exe">
+                    <button class="mainButton">HWInfo</button>
+                </a>
+                
+                <a href="http://dxrepo.duckdns.org/files/install/javamc.exe">
+                    <button class="mainButton">Java pro Minecraft</button>
+                </a>
+                
+                <a href="http://dxrepo.duckdns.org/files/install/AnyDesk.exe">
+                    <button class="mainButton">AnyDesk</button>
+                </a>
+                
+                <a href="http://dxrepo.duckdns.org/files/install/CrystalDiskInfo.exe">
+                    <button class="mainButton">CrystalDiskInfo</button>
+                </a>
+                
+                <a href="http://dxrepo.duckdns.org/files/install/CrystalDiskMark.exe">
+                    <button class="mainButton">CrystalDiskMark</button>
+                </a>
+                
+                <a href="http://dxrepo.duckdns.org/files/install/Everything.exe">
+                    <button class="mainButton">Everything</button>
+                </a>
+                
+                <a href="http://dxrepo.duckdns.org/files/install/GitHubDesktop.exe">
+                    <button class="mainButton">GitHub Desktop</button>
+                </a>
+                
+                <a href="http://dxrepo.duckdns.org/files/install/OBSStudio.exe">
+                    <button class="mainButton">OBS Studio</button>
+                </a>
+                
+                <a href="http://dxrepo.duckdns.org/files/install/OfficeSetup.exe">
+                    <button class="mainButton">Office Setup</button>
+                </a>
+                
+                <a href="http://dxrepo.duckdns.org/files/install/7z.exe">
+                    <button class="mainButton">7-Zip</button>
+                </a>
+                
+                <a href="http://dxrepo.duckdns.org/files/install/ccsetup.exe">
+                    <button class="mainButton">CCleaner</button>
+                </a>
+                
+                <a href="http://dxrepo.duckdns.org/files/install/GIMP.exe">
+                    <button class="mainButton">GIMP</button>
+                </a>
+                
+                <a href="http://dxrepo.duckdns.org/files/install/Git.exe">
+                    <button class="mainButton">Git</button>
+                </a>
+                
+                <a href="http://dxrepo.duckdns.org/files/install/chrome_installer.exe">
+                    <button class="mainButton">Google Chrome</button>
+                </a>
+                
+                <a href="http://dxrepo.duckdns.org/files/install/WinRAR.exe">
+                    <button class="mainButton">WinRAR</button>
+                </a>
+                <a href="http://dxrepo.duckdns.org/files/install/DavinciResolve18.exe">
+                    <button class="mainButton">Davinci Resolve 18</button>
+                </a>
+            </div>
+            </center>
+            <center>
+                <div class="prispevek">
+                    <h2 class="text">Repositář souborů: .iso operačních systémů</h2>
+                    <a href="http://dxrepo.duckdns.org/files/iso/Windows10.iso">
+                        <button class="mainButton">Windows 10 22H2</button>
+                    <a href="http://dxrepo.duckdns.org/files/iso/Windows7x64.iso">
+                        <button class="mainButton">Windows 7 x64</button>
+                    </a>
+                    <a href="http://dxrepo.duckdns.org/files/iso/Tiny10x64.iso">
+                        <button class="mainButton">Tiny10 x64</button>
+                    </a>
+                    <a href="http://dxrepo.duckdns.org/files/iso/WinXPHome.iso">
+                        <button class="mainButton">Windows XP Home</button>
+                    </a>
+                    <a href="http://dxrepo.duckdns.org/files/iso/WinXPPro.iso">
+                        <button class="mainButton">Windows XP Profesional</button>
+                    </a>
+                    <a href="http://dxrepo.duckdns.org/files/iso/Windows11.iso">
+                        <button class="mainButton">Windows 11</button>
+                    </a>
+                    <a href="http://dxrepo.duckdns.org/files/iso/Rectify11.iso">
+                        <button class="mainButton">Rectify 11</button>
+                    </a>
+                    <a href="http://dxrepo.duckdns.org/files/iso/Micro11.iso">
+                        <button class="mainButton">Micro11</button>
+                    </a>
+                </div>
+            </center>
+        </div>
+</body>
+</html>

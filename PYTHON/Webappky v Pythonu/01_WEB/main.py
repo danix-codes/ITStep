@@ -66,13 +66,13 @@ def home():
     age = randint(10, 80)
     return render_template("home.html", user_name=name, user_age=age)
 
-@app.route("/about")
+@app.route("/repo")
 def about():
-    return render_template("about.html")
+    return render_template("repo.html")
 
-@app.route("/contact")
-def contact():
-    return render_template("contact.html")
+@app.route("/tasks")
+def tasks():
+    return render_template("tasks.html")
 
 @app.route("/quiz", methods=["GET", "POST"])
 def quiz():
@@ -87,6 +87,18 @@ def quiz():
         result = f"Máš {correct_count} správných odpovědí z {len(quiz_questions)}!"
 
     return render_template("quiz.html", questions=quiz_questions, result=result)
+
+@app.route("/video")
+def video():
+    return render_template("video.html")
+
+@app.route("/secret")
+def secret():
+    return render_template("secret.html")
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

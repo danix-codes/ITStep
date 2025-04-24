@@ -1,78 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>Contact Us</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        input, textarea, button {
-            margin-top: 5px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #00ccaa;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        button:hover {
-            background-color: #00ccaa8b;
-        }
-    </style>
+    <title>danix._.kontakt</title>
 </head>
 <body>
-    <nav>
-        <a href="/"><i class="fa fa-house"></i> Domů</a> |
-        <a href="/about"><i class="fa fa-user-secret"></i> O nás</a> |
-        <a href="/contact"><i class="fa fa-envelope"></i> Kontakt</a> |
-        <a href="/quiz"><i class="fa fa-question-circle"></i> Kvíz</a>
-    </nav>
-    <div class="container">
-        <h1>Máte dotazy?</h1>
-        <form action="/submit-contact" method="POST">
-            <label for="name">Jméno:</label>
-            <input type="text" id="name" name="name" required>
+<!--Hlavička-->
+<div class="hlavicka">
+    <center>
+        <h1 class="nadpis">danix._.homepage</h1>
+    </center>
+    <ul id="navBar">
+        <li><a href="/"> Domov</a></li>
+        <li><a href="/repo">Soubory</a></li>
+        <li><a href="/tasks">Úkoly</a></li>
+        <li><a href="/video">Video</a></li>
+        <li><a href="/quiz"> Kvíz</a></li>
+        <li><a href="/contact"> Kontakt</a></li>
+    </ul>
+</div>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="@" required>
+<!--Tělo stránky-->
+<div class="prispevky">
+    <center>
+        <div class="prispevek">
+            <h2 class="text">Máte dotazy?</h2>
+            <form action="/submit-contact" method="POST">
+                <label for="name">Jméno:</label><br>
+                <input type="text" id="name" name="name" required><br>
 
-            <label for="message">Zpráva:</label>
-            <textarea id="message" name="message" rows="5" placeholder="Dobrý den..." required></textarea>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" placeholder="@" required><br>
 
-            <button type="submit">ODESLAT</button>
-        </form>
-    </div>
+                <label for="message">Zpráva:</label><br>
+                <textarea id="message" name="message" rows="5" placeholder="Dobrý den..." required></textarea><br>
+
+                <button type="submit">ODESLAT</button>
+            </form>
+        </div>
+    </center>
+</div>
 </body>
 </html>

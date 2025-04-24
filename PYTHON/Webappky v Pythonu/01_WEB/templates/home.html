@@ -2,59 +2,39 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Domovská stránka</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css" type="text/css">
+    <title>danix._.homepage</title>
 </head>
 <body>
-    <nav>
-        <a href="/"><i class="fa fa-house"></i> Domů</a> |
-        <a href="/about"><i class="fa fa-user-secret"></i> O nás</a> |
-        <a href="/contact"><i class="fa fa-envelope"></i> Kontakt</a> |
-        <a href="/quiz"><i class="fa fa-question-circle"></i> Kvíz</a>
-    </nav>
-
-    <section class="hero">
-        <h1>Vítej na našem webu! 👋</h1>
-        <h2><i class="fa fa-user"></i> Jsem {{ user_name }} a je mi {{ user_age }} let.</h2>
-        <p>Objev svět vývoje webových aplikací zábavnou formou! 🚀</p>
-    </section>
-
-    <section class="info">
-        <h2><i class="fa fa-lightbulb fa-icon"></i> Co se tu naučíš?</h2>
-        <ul>
-            <li><i class="fa fa-check fa-icon"></i> Jak vytvořit vlastní webovou stránku</li>
-            <li><i class="fa fa-check fa-icon"></i> Jak používat HTML, CSS a JavaScript</li>
-            <li><i class="fa fa-check fa-icon"></i> Jak vytvořit jednoduchý backend ve Flasku</li>
+    <!--Hlavička-->
+    <div class="hlavicka">
+        <center>
+            <h1 class="nadpis">danix._.homepage</h1>
+        </center>
+        <ul id="navBar">
+            <li><a href="/">Domov</a></li>
+            <li><a href="/repo">Soubory</a></li>
+            <li><a href="/tasks">Úkoly</a></li>
+            <li><a href="/video">Video</a></li>
+            <li><a href="/quiz">Kvíz</a></li>
+            <li><a href="/contact"> Kontakt</a></li>
         </ul>
+    </div>
+    
 
-        <table>
-            <tr>
-                <th>Téma</th>
-                <th>Nástroj</th>
-                <th>Obtížnost</th>
-            </tr>
-            <tr>
-                <td>Základy struktury stránky</td>
-                <td><i class="fa fa-code fa-icon"></i> HTML</td>
-                <td>Lehká</td>
-            </tr>
-            <tr>
-                <td>Design a barvy</td>
-                <td><i class="fa fa-brush fa-icon"></i> CSS</td>
-                <td>Střední</td>
-            </tr>
-            <tr>
-                <td>Interaktivní prvky</td>
-                <td><i class="fa fa-bolt fa-icon"></i> JavaScript</td>
-                <td>Střední</td>
-            </tr>
-            <tr>
-                <td>Jednoduchý server</td>
-                <td><i class="fa fa-server fa-icon"></i> Flask</td>
-                <td>Pokročilá</td>
-            </tr>
-        </table>
-    </section>
+    <!--Část s úvodem-->
+    <div class="prispevky">
+        <center>
+            <div class="prispevek">
+                <h2 class="text">Vítej na mojem webu!</h2>
+                <p class="text">Toto je můj web. Dělám repositář souborů a programů které používám, 
+                a které by se ti mohli hodit. Také sem dávám různé příspěvky, které mě napadnou. Tahle 
+                stránka je zatím v rané fázi vývoje, ale doufám že se ti bude líbit.
+                </p>
+            </div>
+        </center>
+    </div>
 </body>
 </html>

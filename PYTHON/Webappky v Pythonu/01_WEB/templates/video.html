@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css" type="text/css">
+    <title>danix._.video</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .video-container {
+            background-color: #1f2330;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            width: 80%;
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-box {
+            background-color: #2a2a2a;
+            padding: 10px;
+            height: 400px;
+            overflow-y: scroll;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .video-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .video-list li {
+            background-color: #3d4a66;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 5px 0;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-list li:hover {
+            background-color: #4CAF50;
+        }
+
+        #videoPlayer {
+            width: 100%;
+            height: 400px;
+            background-color: #000;
+            border-radius: 8px;
+        }
+
+        .video-title {
+            font-size: 18px;
+            color: #E0E0E0;
+            text-align: center;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <!--Hlavička-->
+    <div class="hlavicka">
+        <center>
+            <h1 class="nadpis">danix._.videos</h1>
+        </center>
+        <ul id="navBar">
+            <li><a href="/">Domov</a></li>
+            <li><a href="/repo">Soubory</a></li>
+            <li><a href="/tasks">Úkoly</a></li>
+            <li><a href="/video">Video</a></li>
+            <li><a href="/quiz">Kvíz</a></li>
+            <li><a href="/contact"> Kontakt</a></li>
+        </ul>
+    </div>
+
+    <div class="video-container">
+        <h1 class="video-title">Přehrávač videí</h1>
+        <div class="video-box">
+            <video id="videoPlayer" controls>
+                <source id="videoSource" src="" type="video/mp4">
+                Váš prohlížeč nepodporuje HTML5 video.
+            </video>
+        </div>
+        <ul class="video-list" id="videoList">
+            <!-- Seznam videí bude naplněn JavaScriptem -->
+            <center>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/0cfreN0WykY?si=2h9Cg1s0U59FgWmA"
+                        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;
+                        encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                </iframe>
+            </center>
+        </ul>
+    </div>
+
+    <script>
+        // Funkce pro načtení videí
+        function loadVideos() {
+            // Pole se jmény videí (můžete přidat další videa)
+            const videoFiles = [
+                "Zatím nic..."  // Příklad videí ve složce "files/videos"
+            ];
+
+            const videoList = document.getElementById("videoList");
+
+            // Generování seznamu videí
+            videoFiles.forEach(video => {
+                const li = document.createElement("li");
+                li.textContent = video;
+                li.onclick = () => playVideo(video);
+                videoList.appendChild(li);
+            });
+        }
+
+        // Funkce pro přehrání vybraného videa
+        function playVideo(video) {
+            const videoPlayer = document.getElementById("videoPlayer");
+            const videoSource = document.getElementById("videoSource");
+
+            // Nastavení zdroje videa a přehrání
+            videoSource.src = `files/videos/${video}`;
+            videoPlayer.load();
+            videoPlayer.play();
+        }
+
+        // Načíst videa při načtení stránky
+        window.onload = loadVideos;
+    </script>
+</body>
+</html>
