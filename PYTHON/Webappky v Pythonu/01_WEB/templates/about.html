@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/style.css" type="text/css">
+    <title>danix._.kontakt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        .page-wrapper {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            justify-content: space-between;
+        }
+        .sidebar {
+            width: 18%;
+            background-color: #1f2330;
+            padding: 20px;
+            border-radius: 8px;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            min-width: 150px;
+            height: fit-content;
+        }
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar-nav li {
+            margin-bottom: 15px;
+        }
+        .sidebar-nav li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .sidebar-nav li a:hover {
+            background-color: #50678b;
+            transform: translateX(5px);
+        }
+        .agent-folder-body {
+            background-color: #121212;
+            color: #E0E0E0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 43vh;
+            margin: 0;
+        }
+        .agent-folder {
+            background-color: #1f2330;
+            border: 2px solid #121212;
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 0 10px #121212;
+            border-radius: 10px;
+        }
+        .agent-folder-right {
+            background-color: #1f2330;
+            border: 2px solid #121212;
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 0 10px #121212;
+            border-radius: 10px;
+            margin-left: auto;
+        }
+        .agent-folder .classified {
+            color: #ff6200;
+            text-align: center;
+            font-size: 1.5rem;
+            animation: blink 1s step-start infinite;
+        }
+        .agent-folder .agent-info p {
+            margin: 0.5rem 0;
+        }
+        .agent-folder .footer {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #ccc;
+            text-align: center;
+        }
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .about-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Hlavička -->
+<header class="hlavicka">
+    <center>
+        <h1 class="nadpis">danix._.about</h1>
+    </center>
+    <nav>
+        <ul id="navBar">
+            <li><a href="/">Domov</a></li>
+            <li><a href="/repo">Soubory</a></li>
+            <li><a href="/quiz">Kvíz</a></li>
+            <li><a href="/contact">O mě</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="page-wrapper">
+    <!-- Sidebar (left box) -->
+    <aside class="sidebar">
+        <ul class="sidebar-nav">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Statistiky</a></li>
+            <li><a href="#">Nastavení</a></li>
+            <li><a href="#">Podpora</a></li>
+        </ul>
+    </aside>
+
+    <!-- Center content -->
+    <div class="main-content">
+        <div class="about-section">
+            <h1><strong>O mě</strong></h1>
+            <h2>Ahoj! Jsem Daniel Koníček a rád programuju!</h2>
+            <p> - IG: @danix._.plays</p>
+            <h4>Chodím na ZŠ Ivana Sekaniny, kde studuju. Jsem zatím amatér, proto se na
+            téhle stránce můžou objevit různé bugy.</h4>
+            <h1>Moje projekty:</h1>
+            <p> - Na mojí škole stříhám videa.</p>
+            <p> - Stříhám MC PVP Edity pro @nortboxmc</p>
+            <p> - Python MultiTool</p>
+            <p> - Tato web. stránka</p>
+        </div>
+    </div>
+
+    <!-- Right classified box -->
+    <section class="agent-folder-body">
+        <div class="agent-folder-right">
+            <h1 class="classified">⚠️ CLASSIFIED ⚠️</h1>
+            <h2>Agent 007 – Daniel Koníček</h2>
+            <div class="agent-info">
+                <p><strong>Kódové jméno:</strong> Koňajs, Dan</p>
+                <p><strong>Status:</strong> Student</p>
+                <p><strong>Poslední mise:</strong> Tenhle Web</p>
+                <p><strong>Zbraň:</strong> Python, HTML, CSS</p>
+                <p><strong>Speciální schopnosti:</strong> LLM Prompty</p>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

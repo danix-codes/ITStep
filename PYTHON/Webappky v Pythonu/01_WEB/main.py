@@ -70,10 +70,6 @@ def home():
 def about():
     return render_template("repo.html")
 
-@app.route("/tasks")
-def tasks():
-    return render_template("tasks.html")
-
 @app.route("/quiz", methods=["GET", "POST"])
 def quiz():
     result = None
@@ -88,17 +84,13 @@ def quiz():
 
     return render_template("quiz.html", questions=quiz_questions, result=result)
 
-@app.route("/video")
-def video():
-    return render_template("video.html")
-
 @app.route("/secret")
 def secret():
     return render_template("secret.html")
 
-@app.route("/contact")
+@app.route("/about")
 def contact():
-    return render_template("contact.html")
+    return render_template("about.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -6,6 +6,49 @@
     <link rel="stylesheet" href="../static/style.css" type="text/css">
     <title>danix._.repo</title>
 </head>
+<style>
+    .page-wrapper {
+        display: flex;
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .sidebar {
+        width: 18%;
+        background-color: #1f2330;
+        padding: 20px;
+        border-radius: 8px;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        min-width: 150px;
+        height: fit-content;
+    }
+
+    .sidebar-nav {
+        list-style: none;
+        padding: 0;
+    }
+
+    .sidebar-nav li {
+        margin-bottom: 15px;
+    }
+
+    .sidebar-nav li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        display: block;
+        padding: 10px 15px;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+    }
+
+    .sidebar-nav li a:hover {
+        background-color: #50678b;
+        transform: translateX(5px);
+    }
+</style>
 <script>
     function searchFiles() {
         let input = document.getElementById("searchBar").value.toLowerCase();
@@ -31,12 +74,20 @@
         <ul id="navBar">
             <li><a href="/">Domov</a></li>
             <li><a href="/repo">Soubory</a></li>
-            <li><a href="/tasks">Úkoly</a></li>
-            <li><a href="/video">Video</a></li>
             <li><a href="/quiz">Kvíz</a></li>
-            <li><a href="/contact"> Kontakt</a></li>
+            <li><a href="/about">O mě</a></li>
         </ul>
     </div>
+    <div class="page-wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul class="sidebar-nav">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Statistiky</a></li>
+                <li><a href="#">Nastavení</a></li>
+                <li><a href="#">Podpora</a></li>
+            </ul>
+        </div>
         <div class="prispevky">
             <center>
             <div class="prispevek">
@@ -134,5 +185,6 @@
                 </div>
             </center>
         </div>
+    </div>
 </body>
 </html>

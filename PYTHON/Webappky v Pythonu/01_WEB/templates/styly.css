@@ -31,26 +31,26 @@ body {
 
 .menu {
     display: flex;
-    flex-wrap: wrap; /* Umožní tlačítkům přecházet do nového řádku */
-    justify-content: space-between; /* Rovnoměrně rozmístí tlačítka na řádku */
-    gap: 20px; /* Přidá mezery mezi tlačítky */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
     margin-top: 30px;
 }
 
 .mainButton {
     background-color: #3d4a66;
     color: #fff;
-    padding: 12px 24px;
+    padding: 8px 16px; /* Zmenšené tlačítko */
     border: none;
-    border-radius: 50px;
+    border-radius: 30px;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px; /* Menší text */
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    width: calc(20% - 16px); /* Každé tlačítko zabere přibližně 20% šířky s mezerami */
-    margin-bottom: 15px; /* Přidáme mezery mezi tlačítky */
+    width: calc(25% - 12px); /* Lépe se vejde na menší obrazovky */
+    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -60,15 +60,9 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.mainButton:active {
-    background-color: #3d4a66;
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
 .hlavicka {
     background-color: #1f2330;
-    padding: 15px 30px;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -81,15 +75,18 @@ body {
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 15px;
+    flex-wrap: wrap; /* Zajištění zalomení */
+    gap: 10px;
+    justify-content: center;
 }
 
 #navBar li a {
     background-color: #3d4a66;
     color: #fff;
-    padding: 12px 24px;
-    border-radius: 50px;
+    padding: 8px 16px; /* Menší tlačítko */
+    border-radius: 30px;
     font-weight: 600;
+    font-size: 14px;
     letter-spacing: 1px;
     transition: all 0.3s ease;
     text-transform: uppercase;
@@ -101,25 +98,18 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-#navBar li {
-    list-style: none;
-}
-
 .search {
-    display: block;
     width: 80%;
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 10px;
-    border-radius: 25px;
+    max-width: 350px;
+    padding: 8px;
+    border-radius: 20px;
     border: none;
     background-color: #3d4a66;
     color: #fff;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     outline: none;
     transition: all 0.3s ease;
-    box-shadow: #121212 0px 0px 10px;
 }
 
 .search:focus {
@@ -128,13 +118,29 @@ body {
     scale: 1.05;
 }
 
-.agent-folder-body {
-    background-color: #1f2330;
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: 20px;
-    width: 80%;
-    max-width: 800px;
-    margin: auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+/* Zajištění lepšího zobrazení na mobilu */
+@media (max-width: 768px) {
+    .mainButton {
+        width: calc(33% - 8px); /* Menší tlačítka na mobilních zařízeních */
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    #navBar li a {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
+.prispevek {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.prispevky {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
