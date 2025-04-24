@@ -127,3 +127,14 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     scale: 1.05;
 }
+
+.agent-folder-body {
+    background-color: #1f2330;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}

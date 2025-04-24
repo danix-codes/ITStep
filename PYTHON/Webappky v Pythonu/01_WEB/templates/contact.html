@@ -3,11 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/style.css" type="text/css">
     <title>danix._.kontakt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        .agent-folder-body {
+            background-color: #121212;
+            color: #E0E0E0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            margin: 0;
+        }
+
+        .agent-folder {
+            background-color: #1f2330;
+            border: 2px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: #121212 0px 0px 10px;
+            animation: fadeIn 2s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .agent-folder .classified {
+            color: red;
+            text-align: center;
+            font-size: 1.5rem;
+            animation: blink 1s step-start infinite;
+        }
+
+        .agent-folder .agent-info p {
+            margin: 0.5rem 0;
+        }
+
+        .agent-folder .footer {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #ccc;
+            text-align: center;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
-<body>
 <!--Hlavička-->
 <div class="hlavicka">
     <center>
@@ -24,24 +74,19 @@
 </div>
 
 <!--Tělo stránky-->
-<div class="prispevky">
-    <center>
-        <div class="prispevek">
-            <h2 class="text">Máte dotazy?</h2>
-            <form action="/submit-contact" method="POST">
-                <label for="name">Jméno:</label><br>
-                <input type="text" id="name" name="name" required><br>
-
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email" placeholder="@" required><br>
-
-                <label for="message">Zpráva:</label><br>
-                <textarea id="message" name="message" rows="5" placeholder="Dobrý den..." required></textarea><br>
-
-                <button type="submit">ODESLAT</button>
-            </form>
+<h2 class="text">O mě</h2>
+<!--o mě-->
+<div class="agent-folder-body">
+    <div class="agent-folder">
+        <h1 class="classified">⚠️ CLASSIFIED ⚠️</h1>
+        <h2>Agent 007 – XXX XXX</h2>
+        <div class="agent-info">
+            <p><strong>Kódové jméno:</strong> Bond, James Bond</p>
+            <p><strong>Status:</strong> Student</p>
+            <p><strong>Poslední mise:</strong> XXX</p>
+            <p><strong>Zbraň:</strong> Python, HTML, CSS</p>
+            <p><strong>Speciální schopnosti:</strong> XXX</p>
         </div>
-    </center>
+    </div>
 </div>
-</body>
 </html>
