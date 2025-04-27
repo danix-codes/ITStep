@@ -103,30 +103,138 @@
         text-decoration: underline; /* Podtržení při najetí */
         color: #50678b; /* Barva na hover (v případě změny barvy při hover) */
     }
+
+    /* Stránkování */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .pagination a {
+        color: #fff;
+        background-color: #1f2330;
+        border: 1px solid #50678b;
+        padding: 8px 16px;
+        text-decoration: none;
+        margin: 0 5px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .pagination a:hover {
+        background-color: #50678b;
+    }
 </style>
 
 <script>
-    function searchFiles() {
-        let input = document.getElementById("searchBar").value.toLowerCase();
-        let boxes = document.querySelectorAll(".program-box");
+    let currentPage = 1;
+    const itemsPerPage = 6;
+    const programs = [
+        { name: "7ZIP", file: "7ZIP.exe", description: "Nástroj pro extrahování a vytváření archivů zadarmo.", rating: "★★★★★", category: "Utility", version: "Windows 7/10/11, x86/x64" },
+        { name: "CCleaner", file: "ccsetup.exe", description: "Čistič počítače. Zdarma verze.", rating: "★★★★", category: "Utility", version: "Windows 7/10/11, x86/x64" },
+        { name: "WinRAR", file: "winrar-x64-623.exe", description: "Aplikace pro extrahování a vytváření archivů.", rating: "★★★★", category: "Utility", version: "Windows 7/10/11, x64" },
+        { name: "GIMP", file: "gimp-2.10.28-setup.exe", description: "Aplikace pro úpravu fotek.", rating: "★★★★", category: "Design", version: "Windows 7/10/11, x86/x64" },
+        { name: "Git", file: "Git-2.40.1-64-bit.exe", description: "Aplikace pro správu Git repositáří skrze příkazovou řádku nebo GUI.", rating: "★★★★★", category: "Development", version: "Windows 7/10/11, x64" },
+        { name: "Google Chrome", file: "chrome_installer.exe", description: "Aplikace pro prohlížení internetu.", rating: "★★★★★", category: "Web", version: "Windows 7/10/11, x86/x64" },
+        { name: "VLC Media Player", file: "vlc-3.0.20-win64.exe", description: "Aplikace pro přehrávání videí nebo audio.", rating: "★★★★★", category: "Media", version: "Windows 7/10/11, x64" },
+        { name: "LibreOffice", file: "LibreOffice_25.2.2_Win_x86-64.msi", description: "Open-source kancelářský balík.", rating: "★★★★", category: "Productivity", version: "Windows 7/10/11, x86/x64" },
+        { name: "Steam", file: "SteamSetup.exe", description: "Platforma pro hraní her a správu herních knihoven.", rating: "★★★★★", category: "Gaming", version: "Windows 7/10/11, x86/x64" },
+        { name: "Python", file: "python-3.13.3-amd64.exe", description: "Programovací jazyk pro vývoj aplikací.", rating: "★★★★★", category: "Development", version: "Windows 7/10/11, x64" },
+        { name: "Audacity", file: "audacity-win-3.7.3-64bit.exe", description: "Open-source nástroj pro úpravu zvuku.", rating: "★★★★", category: "Audio", version: "Windows 7/10/11, x64" },
+        { name: "Discord", file: "DiscordSetup.exe", description: "Komunikační aplikace pro herní komunitu.", rating: "★★★★★", category: "Communication", version: "Windows 7/10/11, x86/x64" },
+        { name: "OBS Studio", file: "OBS-Studio-31.0.2-Windows-Installer.exe", description: "Aplikace pro streamování a nahrávání videa.", rating: "★★★★★", category: "Media", version: "Windows 7/10/11, x86/x64" },
+        { name: "VSCode", file: "VSCodeUserSetup-x64-1.99.3.exe", description: "Editor kódu pro programátory.", rating: "★★★★★", category: "Development", version: "Windows 7/10/11, x64" },
+        { name: "Notepad++", file: "npp.8.7.9.Installer.x64.exe", description: "Textový editor pro programátory.", rating: "★★★★★", category: "Development", version: "Windows 7/10/11, x64" },
+    ];
 
-        boxes.forEach(box => {
-            let title = box.querySelector("h2").innerText.toLowerCase();
-            if (title.includes(input)) {
-                box.style.display = "block";
-            } else {
-                box.style.display = "none";
-            }
+
+    function displayPrograms(page) {
+        const start = (page - 1) * itemsPerPage;
+        const end = page * itemsPerPage;
+        const filteredPrograms = programs.slice(start, end);
+
+        const container = document.querySelector(".prispevky");
+        container.innerHTML = "";
+
+        filteredPrograms.forEach(program => {
+            const programBox = `
+        <div class="program-box">
+            <h2><a href="{{ url_for('static', filename='files/install/${program.file}') }}" download>${program.name}</a></h2>
+            <hr>
+            <p>Popis: ${program.description}</p>
+            <p>${program.rating}</p>
+            <p><strong>Verze a architektura: </strong>${program.version}</p> <!-- Přidání verze a architektury -->
+            <hr>
+        </div>
+    `;
+            container.innerHTML += programBox;
+        });
+
+        updatePagination(page);
+    }
+
+    function updatePagination(page) {
+        const totalPages = Math.ceil(programs.length / itemsPerPage);
+        const pagination = document.querySelector(".pagination");
+        pagination.innerHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+            const pageLink = `<a href="javascript:void(0);" onclick="changePage(${i})">${i}</a>`;
+            pagination.innerHTML += pageLink;
+        }
+    }
+
+    function changePage(page) {
+        currentPage = page;
+        displayPrograms(page);
+    }
+
+    function filterCategory(category) {
+        const filteredPrograms = programs.filter(program => program.category === category);
+        displayFilteredPrograms(filteredPrograms);
+    }
+
+    function searchPrograms() {
+        const query = document.getElementById("searchBar").value.toLowerCase();
+        const filteredPrograms = programs.filter(program =>
+            program.name.toLowerCase().includes(query) || program.description.toLowerCase().includes(query)
+        );
+        displayFilteredPrograms(filteredPrograms);
+    }
+
+    function displayFilteredPrograms(filteredPrograms) {
+        const container = document.querySelector(".prispevky");
+        container.innerHTML = "";
+
+        filteredPrograms.forEach(program => {
+            const programBox = `
+            <div class="program-box">
+                <h2><a href="{{ url_for('static', filename='files/install/${program.file}') }}" download>${program.name}</a></h2>
+                <hr>
+                <p>Popis: ${program.description}</p>
+                <p>${program.rating}</p>
+                <hr>
+            </div>
+        `;
+            container.innerHTML += programBox;
         });
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        displayPrograms(currentPage);
+        document.getElementById("searchBar").addEventListener("input", searchPrograms);
+    });
+
 </script>
+
 <body>
 <!-- Hlavička -->
 <div class="hlavicka">
     <center>
         <h1 class="nadpis">danix._.repo</h1>
     </center>
-    <input class="search" type="text" id="searchBar" onkeyup="searchFiles()" placeholder="Vyhledat...">
+    <input class="search" type="text" id="searchBar" placeholder="Vyhledat...">
     <ul id="navBar">
         <li><a href="/">Domov</a></li>
         <li><a href="/repo">Soubory</a></li>
@@ -149,48 +257,28 @@
         <!-- Druhý sidebar (kategorie) -->
         <div class="categories-sidebar">
             <ul class="sidebar-nav">
-                <li><a href="#">Kategorie 1</a></li>
-                <li><a href="#">Kategorie 2</a></li>
-                <li><a href="#">Kategorie 3</a></li>
+                <li><a href="#" onclick="displayPrograms(1)">Všechny</a></li>
+                <li><a href="#" onclick="filterCategory('Utility')">Utility</a></li>
+                <li><a href="#" onclick="filterCategory('Design')">Design</a></li>
+                <li><a href="#" onclick="filterCategory('Development')">Development</a></li>
+                <li><a href="#" onclick="filterCategory('Web')">Web</a></li>
+                <li><a href="#" onclick="filterCategory('Gaming')">Gaming</a></li>
+                <li><a href="#" onclick="filterCategory('Media')">Media</a></li>
+                <li><a href="#" onclick="filterCategory('Productivity')">Productivity</a></li>
+                <li><a href="#" onclick="filterCategory('Audio')">Audio</
+                <li><a href="#" onclick="filterCategory('Communication')">Communication</a></li>
             </ul>
         </div>
     </div>
 
-    <!-- Programy -->
+    <!-- Hlavní obsah (programy) -->
     <div class="prispevky">
-        <center>
-            <div class="prispevek">
-                <div class="program-box">
-                    <h2><a href="http://dxrepo.duckdns.org/files/install/hwi.exe">HWInfo</a></h2>
-                    <hr>
-                    <p>Popis: Nástroj pro monitorování hardware.</p>
-                    <p>Určeno pro: Zjištění informací o počítači.</p>
-                    <hr>
-                    <p class="stars">★★★★☆</p>
-                </div>
-
-                <div class="program-box">
-                    <h2><a href="http://dxrepo.duckdns.org/files/install/javamc.exe">Java pro Minecraft</a></h2>
-                    <hr>
-                    <p>Popis: Potřebné knihovny pro běh Minecraftu.</p>
-                    <p>Určeno pro: Hraní Minecraftu.</p>
-                    <hr>
-                    <p class="stars">★★★★★</p>
-                </div>
-
-                <div class="program-box">
-                    <h2><a href="http://dxrepo.duckdns.org/files/install/AnyDesk.exe">AnyDesk</a></h2>
-                    <hr>
-                    <p>Popis: Aplikace pro vzdálený přístup k počítači.</p>
-                    <p>Určeno pro: Vzdálený přístup k počítači.</p>
-                    <hr>
-                    <p class="stars">★★★☆☆</p>
-                </div>
-
-                <!-- Další programy budou následovat podobně -->
-            </div>
-        </center>
+        <!-- Programy se zobrazí pomocí JavaScriptu -->
     </div>
 </div>
+
+<!-- Stránkování -->
+<div class="pagination"></div>
+
 </body>
 </html>

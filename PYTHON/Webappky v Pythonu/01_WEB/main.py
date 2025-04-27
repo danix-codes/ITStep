@@ -143,5 +143,6 @@ def server_info():
         'visit_count': visit_count
     })
 
+
 if __name__ == "__main__":
     app.run(debug=True, host='192.168.1.3')
