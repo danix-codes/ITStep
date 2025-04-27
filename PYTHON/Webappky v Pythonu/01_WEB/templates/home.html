@@ -11,7 +11,7 @@
             display: flex;
             gap: 20px;
             margin-top: 30px;
-				}
+        }
         .sidebar {
             width: 18%;
             background-color: #1f2330;
@@ -47,6 +47,21 @@
             background-color: #50678b;
             transform: translateX(5px);
         }
+
+        .prispevek {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .prispevky {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            padding: 0 20px;
+        }
     </style>
 </head>
 <body>
@@ -68,13 +83,19 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <ul class="sidebar-nav">
-            <li><a href="#">Statistiky</a></li>
-            <li><a href="#">Podpora</a></li>
+            <li><a href="/stats">Statistiky</a></li>
+            <li><a href="/support">Podpora</a></li>
         </ul>
     </div>
 
     <!-- Hlavní obsah -->
     <div class="prispevky">
+        <div class="prispevek">
+            <h2 class="text">27.04.2025: Web je v 60-70% hotový</h2>
+            <p class="text">
+                Tato webová stránka je skoro hotová! Stačí dodělat podstránky na sidebaru, a dodělat soubory.
+            </p>
+        </div>
         <div class="prispevek">
             <h2 class="text">Vítej na mojem webu!</h2>
             <p class="text">

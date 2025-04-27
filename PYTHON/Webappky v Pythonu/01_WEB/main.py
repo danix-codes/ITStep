@@ -1,7 +1,11 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from random import randint
+import time
+import os
 
 app = Flask(__name__)
+
+start_time = time.time()
 
 quiz_questions = [
     {
@@ -18,7 +22,7 @@ quiz_questions = [
         "options": {
             "A": "Hra se zavře",
             "B": "Objevíš se před kostelem",
-            "C": "Vymaže ti top všechno na disku" 
+            "C": "Vymaže ti top všechno na disku"
         },
         "correct": "B"
     },
@@ -60,6 +64,34 @@ quiz_questions = [
     }
 ]
 
+
+# Ukládání počtu návštěv do souboru
+VISIT_COUNT_FILE = "visit_count.txt"
+
+# Funkce pro načítání počtu návštěv z textového souboru
+def load_visit_count():
+    if os.path.exists(VISIT_COUNT_FILE):
+        with open(VISIT_COUNT_FILE, "r") as f:
+            return int(f.read())
+    return 0
+
+# Funkce pro uložení počtu návštěv do souboru
+def save_visit_count(count):
+    with open(VISIT_COUNT_FILE, "w") as f:
+        f.write(str(count))
+
+# Načítání počtu návštěv při spuštění serveru
+visit_count = load_visit_count()
+
+# Funkce pro zvýšení počtu návštěv, bude spuštěna při každém požadavku na jakoukoli stránku
+@app.before_request
+def before_request():
+    global visit_count
+    # Zvýšení počtu návštěv při každém požadavku na jakoukoli stránku
+    visit_count += 1
+    save_visit_count(visit_count)
+
+
 @app.route("/")
 def home():
     name = "Petr"
@@ -92,5 +124,24 @@ def secret():
 def contact():
     return render_template("about.html")
 
+@app.route("/support")
+def support():
+    return render_template("support.html")
+
+@app.route("/stats")
+def stats():
+    # Získání času běhu serveru
+    uptime = time.time() - start_time
+    return render_template("stats.html", uptime=uptime, visit_count=visit_count)
+
+@app.route("/server_info")
+def server_info():
+    # Endpoint pro vrácení statistik serveru ve formátu JSON
+    uptime = time.time() - start_time
+    return jsonify({
+        'uptime': uptime,
+        'visit_count': visit_count
+    })
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='192.168.1.3')

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css" type="text/css">
+    <title>danix._.stats</title>
+    <style>
+        .page-wrapper {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .sidebar {
+            width: 18%;
+            background-color: #1f2330;
+            padding: 20px;
+            border-radius: 8px;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            min-width: 150px;
+            height: fit-content;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar-nav li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .sidebar-nav li a:hover {
+            background-color: #50678b;
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+<!--Hlavička-->
+<div class="hlavicka">
+    <center>
+        <h1 class="nadpis">danix._.stats</h1>
+    </center>
+    <ul id="navBar">
+        <li><a href="/">Domov</a></li>
+        <li><a href="/repo">Soubory</a></li>
+        <li><a href="/quiz">Kvíz</a></li>
+        <li><a href="/about">O mě</a></li>
+    </ul>
+</div>
+
+<!--Wrapper-->
+<div class="page-wrapper">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul class="sidebar-nav">
+            <li><a href="/">Domov</a></li>
+            <li><a href="/support">Podpora</a></li>
+        </ul>
+    </div>
+
+    <!-- Hlavní obsah -->
+    <div class="prispevky">
+        <div class="prispevek" id="server-info">
+        </div>
+    </div>
+</div>
+
+<script>
+    // Fetch server info from the Flask endpoint
+    fetch('/server_info')
+        .then(response => response.json())
+        .then(data => {
+            const uptimeInSeconds = data.uptime;
+            const visitCount = data.visit_count;
+
+            // Convert uptime to a readable format
+            const hours = Math.floor(uptimeInSeconds / 3600);
+            const minutes = Math.floor((uptimeInSeconds % 3600) / 60);
+            const seconds = Math.floor(uptimeInSeconds % 60);
+
+            const uptimeString = `${hours} hodin, ${minutes} minut, ${seconds} sekund`;
+
+            // Update the page with server stats
+            document.getElementById('server-info').innerHTML = `
+                <h2 class="text">Server běží: ${uptimeString}</h2>
+                <p class="text">Počet návštěv: ${visitCount}</p>
+            `;
+        })
+        .catch(error => {
+            console.error('Error fetching server info:', error);
+            document.getElementById('server-info').innerHTML = `<p class="text">Nelze načíst informace o serveru.</p>`;
+        });
+</script>
+</body>
+</html>
